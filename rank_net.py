@@ -97,7 +97,7 @@ def compute_accuracy(prediction, labels):
 
 def next_batch(s, e, inputs, labels):
     input1 = inputs[s:e, 0]   # 元组的用法，取从s到e这段
-    input2 = inputs[s:e, 1]   # 元组的用法，取从s到e这段
+    input2 = inputs[s:e, 1]  
     y = np.reshape(labels[s:e], (len(range(s, e)), 1))
     return input1, input2, y
 
@@ -152,7 +152,6 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
                 pdb.set_trace()
             avg_loss += loss_value
             avg_acc += tr_acc * 100
-        # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
         duration = time.time() - start_time
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
