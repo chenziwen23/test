@@ -153,7 +153,7 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=log_device_placement)
                 pdb.set_trace()
             avg_loss += loss_value
             avg_acc += tr_acc * 100
-        # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
+            print('loss_valuet: %f, ar_acc: %f' % (loss_value, tr_acc))
         duration = time.time() - start_time
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
