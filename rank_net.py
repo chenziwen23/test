@@ -14,21 +14,23 @@ test_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/test_safe
 id_txt = r'/storage/guoyangyang/ziwen/feature_ext/input_imagelist.txt'
 f_vector_csv = r'/storage/guoyangyang/ziwen/feature_ext/feature_extracted.csv'
 
+# Processing Units logs
+log_device_placement = True
 
 # 读取txt文件
 def readImageList(input_imagelist):
-    imageList = []
+    imageList_ = []
     with open(input_imagelist, 'r') as fi:
         while(True):
             line = fi.readline().strip().split()  # every line is a image file name
             if not line:
                 break
-            imageList.append(line[0].rstrip('.jpg'))
-    return imageList
+            imageList_.append(line[0].rstrip('.jpg'))
+    return imageList_
 
 
 # 序列号匹配对应的特征向量，并返回一个array数组(包含对应特征向量及标签)
-def read_data_create_pairs(imageList, safty):
+def read_data_create_pairs(imageList_, safty):
     f = open(safty)
     reader = csv.reader(f)
     header = next(reader)
@@ -48,10 +50,10 @@ def read_data_create_pairs(imageList, safty):
             flag = -1
         else:
             continue
-        for j in range(len(imageList)):
-            if imageList[j] == temp_val[i][0]:
+        for j in range(len(imageList_)):
+            if imageList_[j] == temp_val[i][0]:
                 x1 = j
-            if imageList[j] == temp_val[i][0]:
+            if imageList_[j] == temp_val[i][0]:
                 x2 = j
                 break
         temp = [temp_f[x1],temp_f[x2]]
@@ -81,11 +83,11 @@ def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     return fc
 
 
-def log_loss_(label, difference):
-    predicts = difference
-    labels = tf.div(tf.add(label, 1), 2)
-    loss = tf.losses.log_loss(predicts, labels)
-    return loss
+def log_loss_(label, difference_):
+    predicts = difference_
+    labels_ = tf.div(tf.add(label, 1), 2)
+    loss_ = tf.losses.log_loss(predicts, labels_)
+    return loss_
 
 
 def compute_accuracy(prediction, labels):
@@ -95,42 +97,41 @@ def compute_accuracy(prediction, labels):
     # 返回一个float型的得分数据
 
 
-def next_batch(s, e, inputs, labels):
-    input1 = inputs[s:e, 0]   # 元组的用法，取从s到e这段
-    input2 = inputs[s:e, 1]  
-    y = np.reshape(labels[s:e], (len(range(s, e)), 1))
-    return input1, input2, y
+def next_batch(s_, e_, inputs, labels_):
+    input1_ = inputs[s_:e_, 0]   # 元组的用法，取从s到e这段
+    input2_ = inputs[s_:e_, 1]
+    y_ = np.reshape(labels_[s_:e_], (len(range(s_, e_)), 1))
+    return input1_, input2_, y_
 
-
-# 初始化所有变量
-init = tf.global_variables_initializer()
 batch_size = 256
 
-# create training+validate+test pairs of image
-imageList = readImageList(id_txt)
-train_x, train_labels = read_data_create_pairs(imageList, train_safty)
-validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
-test_x, test_labels = read_data_create_pairs(imageList, test_safty)
+with tf.device('/gpu:0'):
+    # create training+validate+test pairs of image
+    imageList = readImageList(id_txt)
+    train_x, train_labels = read_data_create_pairs(imageList, train_safty)
+    validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
+    test_x, test_labels = read_data_create_pairs(imageList, test_safty)
 
-images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
-images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
-labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
+    images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
+    images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
+    labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
+with tf.device('/gpu:1'):
+    with tf.variable_scope("siamese") as scope:
+        model1 = ss_net(images_L)
+        scope.reuse_variables()
+        model2 = ss_net(images_R)
 
-with tf.variable_scope("siamese") as scope:
-    model1 = ss_net(images_L)
-    scope.reuse_variables()
-    model2 = ss_net(images_R)
-
-difference = tf.subtract(model2, model1)
-loss = log_loss_(labels, difference)
-optimizer = tf.train.MomentumOptimizer(1e-4, momentum=0.9).minimize(loss)
+        difference = tf.subtract(model2, model1)
+        loss = log_loss_(labels, difference)
+        optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
 # os.environ["CUDA_VISIBLE_DEVICES"] = "1"
 # gpu_options = tf.GPUOptions(allow_growth=True)
 # config=tf.ConfigProto(gpu_options=gpu_options)
 
 # 启动会话-图
-with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
-    sess.run(init)
+with tf.Session(config=tf.ConfigProto(log_device_placement=log_device_placement)) as sess:
+    # 初始化所有变量
+    tf.global_variables_initializer().run()
     # 循环训练整个样本30次
     for epoch in range(30):
         avg_loss = 0.
@@ -152,6 +153,7 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
                 pdb.set_trace()
             avg_loss += loss_value
             avg_acc += tr_acc * 100
+        # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
         duration = time.time() - start_time
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
@@ -170,5 +172,3 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
     y = np.reshape(test_labels, (test_labels.shape[0], 1))
     te_acc = compute_accuracy(predict, y)
     print('Accuract test set %0.2f' % (100 * te_acc))
-
-
