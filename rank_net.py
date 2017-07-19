@@ -14,8 +14,6 @@ test_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/test_safe
 id_txt = r'/storage/guoyangyang/ziwen/feature_ext/input_imagelist.txt'
 f_vector_csv = r'/storage/guoyangyang/ziwen/feature_ext/feature_extracted.csv'
 
-# Processing Units logs
-log_device_placement = True
 
 # 读取txt文件
 def readImageList(input_imagelist):
@@ -50,12 +48,13 @@ def read_data_create_pairs(imageList_, safty):
             flag = -1
         else:
             continue
-        for j in range(len(imageList_)):
-            if imageList_[j] == temp_val[i][0]:
+        for j in range(len(imageList)):
+            if temp_val[i][0] == imageList[j]:
                 x1 = j
-            if imageList_[j] == temp_val[i][0]:
+            if temp_val[i][1] == imageList[j]:
                 x2 = j
-                break
+                if x1 != -1:
+                    break
         temp = [temp_f[x1],temp_f[x2]]
         pairs.append(temp)
         labels.append(flag)
@@ -121,15 +120,12 @@ with tf.device('/gpu:1'):
         scope.reuse_variables()
         model2 = ss_net(images_R)
 
-        difference = tf.subtract(model2, model1)
-        loss = log_loss_(labels, difference)
-        optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
-# os.environ["CUDA_VISIBLE_DEVICES"] = "1"
-# gpu_options = tf.GPUOptions(allow_growth=True)
-# config=tf.ConfigProto(gpu_options=gpu_options)
-
+    difference = tf.subtract(model2, model1)
+    loss = log_loss_(labels, difference)
+    optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
+print('a------------------------------------******------------------------------------------a')
 # 启动会话-图
-with tf.Session(config=tf.ConfigProto(log_device_placement=log_device_placement)) as sess:
+with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
     # 初始化所有变量
     tf.global_variables_initializer().run()
     # 循环训练整个样本30次
