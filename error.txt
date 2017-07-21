@@ -1,45 +1,10 @@
 Traceback (most recent call last):
-  File "rank_net.py", line 146, in <module>
-    _, loss_value, predict = sess.run([optimizer, loss, difference],feed_dict={images_L: input1, images_R: input2, labels: y})
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 778, in run
-    run_metadata_ptr)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 982, in _run
-    feed_dict_string, options, run_metadata)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1032, in _do_run
-    target_list, options, run_metadata)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/client/session.py", line 1052, in _do_call
-    raise type(e)(node_def, op, message)
-tensorflow.python.framework.errors_impl.FailedPreconditionError: Attempting to use uninitialized value siamese/fc3W
-
-
-Caused by op u'siamese/fc3W/read', defined at:
-  File "rank_net.py", line 120, in <module>
-    model1 = ss_net(images_L)
-  File "rank_net.py", line 69, in ss_net
-    fc3 = fc_layer(ac2, 1, "fc3")
-  File "rank_net.py", line 78, in fc_layer
-    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variable_scope.py", line 1049, in get_variable
-    use_resource=use_resource, custom_getter=custom_getter)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variable_scope.py", line 948, in get_variable
-    use_resource=use_resource, custom_getter=custom_getter)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variable_scope.py", line 356, in get_variable
-    validate_shape=validate_shape, use_resource=use_resource)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variable_scope.py", line 341, in _true_getter
-    use_resource=use_resource)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variable_scope.py", line 714, in _get_single_variable
-    validate_shape=validate_shape)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variables.py", line 197, in __init__
-    expected_shape=expected_shape)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/variables.py", line 316, in _init_from_args
-    self._snapshot = array_ops.identity(self._variable, name="read")
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/ops/gen_array_ops.py", line 1338, in identity
-    result = _op_def_lib.apply_op("Identity", input=input, name=name)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/framework/op_def_library.py", line 768, in apply_op
-    op_def=op_def)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 2336, in create_op
-    original_op=self._default_original_op, op_def=op_def)
-  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/tensorflow/python/framework/ops.py", line 1228, in __init__
-    self._traceback = _extract_stack()
-
-FailedPreconditionError (see above for traceback): Attempting to use uninitialized value siamese/fc3W
+  File "rank_net_fu.py", line 153, in <module>
+    tr_acc = compute_accuracy(predict, y)
+  File "rank_net_fu.py", line 100, in compute_accuracy
+    acc = accuracy_score(labels, prediction)
+  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/sklearn/metrics/classification.py", line 172, in accuracy_score
+    y_type, y_true, y_pred = _check_targets(y_true, y_pred)
+  File "/storage/guoyangyang/anaconda2/envs/python2/lib/python2.7/site-packages/sklearn/metrics/classification.py", line 82, in _check_targets
+    "".format(type_true, type_pred))
+ValueError: Can't handle mix of binary and continuous
