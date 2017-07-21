@@ -90,12 +90,13 @@ def log_loss_(label, difference_):
     return loss_
 
 
-def compute_accuracy_train(prediction, labels):
-    labels = tf.div(tf.add(labels, 1), 2)
-    return labels[prediction.ravel() < 0.5].mean()
+# def compute_accuracy_train(prediction, labels):
+#     labels = tf.div(tf.add(labels, 1), 2)
+#     return labels[prediction.ravel() < 0.5].mean()
 
-def compute_accuracy_vt(prediction, labels):
-    labels = tf.div(tf.add(labels, 1), 2)
+
+def compute_accuracy(prediction, label):
+    labels = np.divide(np.add(label, 1), 2)
     acc = accuracy_score(labels, prediction)
     # sklearn.metrics.accuracy_score(y_true, y_pred, normalize=True, sample_weight=None)
     return acc
@@ -127,7 +128,7 @@ with tf.device('/gpu:1'):
 
     difference = tf.sigmoid(tf.subtract(model2, model1))
     loss = log_loss_(labels, difference)
-    optimizer = tf.train.MomentumOptimizer(1e-6, 0.9).minimize(loss)
+    optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
 print('a------------------------------------******------------------------------------------a')
 # 启动会话-图
 with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
@@ -148,7 +149,7 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_plac
             _, loss_value, predict = sess.run([optimizer, loss, difference],feed_dict={images_L: input1, images_R: input2, labels: y})
             feature1 = model1.eval(feed_dict={images_L: input1})
             feature2 = model2.eval(feed_dict={images_R: input2})
-            tr_acc = compute_accuracy_train(predict, y)
+            tr_acc = compute_accuracy(predict, y)
             if math.isnan(tr_acc) and epoch != 0:
                 print('tr_acc %0.2f' % tr_acc)
                 pdb.set_trace()
@@ -159,17 +160,17 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_plac
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
     predict = difference.eval(feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1], labels: train_labels})
-    tr_acc = compute_accuracy_train(predict, y)
+    tr_acc = compute_accuracy(predict, y)
     print('Accuract training set %0.2f' % (100 * tr_acc))
 
     # Validate model
     predict = difference.eval(feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1], labels: validate_labels})
     y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
-    te_acc = compute_accuracy_vt(predict, y)
+    te_acc = compute_accuracy(predict, y)
     print('Accuract validate set %0.2f' % (100 * te_acc))
 
     # Test model
     predict = difference.eval(feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1], labels: test_labels})
     y = np.reshape(test_labels, (test_labels.shape[0], 1))
-    te_acc = compute_accuracy_vt(predict, y)
+    te_acc = compute_accuracy(predict, y)
     print('Accuract test set %0.2f' % (100 * te_acc))
