@@ -46,7 +46,7 @@ def read_data_create_pairs(imageList_, safty):
         if temp_val[i][2] == 'left':
             flag = 1
         elif temp_val[i][2] == 'right':
-            flag = 0
+            flag = -1
         else:
             continue
         for j in range(len(imageList_)):
@@ -56,8 +56,8 @@ def read_data_create_pairs(imageList_, safty):
                 x2 = j
                 if x1 != -1:
                     break
-        temp = [temp_f[x1],temp_f[x2]]
-        pairs.append(temp)
+        temp = [temp_f[x1],temp_f[x2]] # temp_f[x1]是一个数组[...]
+        pairs.append(int(temp))
         labels.append(flag)
     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
 
@@ -85,8 +85,8 @@ def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
 
 def log_loss_(label, difference_):
     predicts = difference_
-    # labels_ = tf.div(tf.add(label, 1), 2)
-    loss_ = tf.losses.log_loss(labels = label, predictions = predicts)
+    labels_ = tf.div(tf.add(label, 1), 2)
+    loss_ = tf.losses.log_loss(labels = labels_, predictions = predicts)
     return loss_
 
 
@@ -97,8 +97,8 @@ def log_loss_(label, difference_):
 
 def compute_accuracy(prediction, label):
     prediction_ = map(lambda x: [[i, 0][i < 0.5] and [i, 1][i >= 0.5] for i in x], prediction)
-    # labels = np.divide(np.add(label, 1), 2)
-    acc = accuracy_score(label, prediction_)
+    label_ = np.divide(np.add(label, 1), 2)
+    acc = accuracy_score(label_, prediction_)
     # sklearn.metrics.accuracy_score(y_true, y_pred, normalize=True, sample_weight=None)
     return acc
     # 返回一个float型的得分数据
@@ -112,16 +112,16 @@ def next_batch(s_, e_, inputs, labels_):
 
 batch_size = 256
 
-with tf.device('/gpu:0'):
-    # create training+validate+test pairs of image
-    imageList = readImageList(id_txt)
-    train_x, train_labels = read_data_create_pairs(imageList, train_safty)
-    validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
-    test_x, test_labels = read_data_create_pairs(imageList, test_safty)
+# with tf.device('/gpu:0'):
+# create training+validate+test pairs of image
+imageList = readImageList(id_txt)
+train_x, train_labels = read_data_create_pairs(imageList, train_safty)
+validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
+test_x, test_labels = read_data_create_pairs(imageList, test_safty)
 
-    images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
-    images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
-    labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
+images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
+images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
+labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
 with tf.device('/gpu:1'):
     with tf.variable_scope("siamese") as scope:
         model1 = ss_net(images_L)
@@ -133,11 +133,11 @@ with tf.device('/gpu:1'):
     optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
 print('a------------------------------------******------------------------------------------a')
 # 启动会话-图
-with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
+with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
     # 初始化所有变量
     tf.global_variables_initializer().run()
     # 循环训练整个样本30次
-    for epoch in range(30):
+    for epoch in range(20):
         avg_loss = 0.
         avg_acc = 0.
         total_batch = int(train_x.shape[0] / batch_size)
@@ -157,7 +157,7 @@ with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_plac
                 pdb.set_trace()
             avg_loss += loss_value
             avg_acc += tr_acc * 100
-            print('loss_valuet: %0.2f,  ar_acc: %0.2f' % (loss_value, tr_acc))
+            # print('loss_valuet: %0.2f,  ar_acc: %0.2f' % (loss_value, tr_acc))
         duration = time.time() - start_time
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
