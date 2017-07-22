@@ -1,0 +1,763 @@
+nohup: 忽略输入
+2017-07-21 22:37:54.586826: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.1 instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-21 22:37:54.613150: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use SSE4.2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-21 22:37:54.613198: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-21 22:37:54.613211: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use AVX2 instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-21 22:37:54.613222: W tensorflow/core/platform/cpu_feature_guard.cc:45] The TensorFlow library wasn't compiled to use FMA instructions, but these are available on your machine and could speed up CPU computations.
+2017-07-21 22:37:54.615795: I tensorflow/core/common_runtime/direct_session.cc:257] Device mapping:
+
+2017-07-21 22:37:54.776895: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b/Momentum: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.776952: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b/Momentum/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.776961: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b/Momentum/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.776970: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Momentum: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.776978: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Momentum/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.776986: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Momentum/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.776994: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b/Momentum: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777001: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b/Momentum/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777009: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b/Momentum/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777017: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Momentum: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777024: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Momentum/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777031: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Momentum/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777038: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b/Momentum: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777045: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b/Momentum/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777052: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b/Momentum/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777060: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Momentum: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777067: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Momentum/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777073: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Momentum/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777082: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777101: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Fill: (Fill)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777109: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/assert_broadcastable/static_scalar_check_success: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777116: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/ones_like: (Fill)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777124: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Select_grad/zeros_like: (ZerosLike)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777131: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/assert_broadcastable/static_scalar_check_success: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777140: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/ones_like: (Fill)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777147: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/zeros_like: (ZerosLike)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777154: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/Equal: (Equal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777161: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/Select: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777168: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777174: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777180: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777187: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777192: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777199: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Initializer/truncated_normal/TruncatedNormal: (TruncatedNormal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777207: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Initializer/truncated_normal/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777214: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Initializer/truncated_normal: (Add)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777221: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777227: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777233: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777239: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777245: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777251: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777257: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Initializer/truncated_normal/TruncatedNormal: (TruncatedNormal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777263: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Initializer/truncated_normal/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777274: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Initializer/truncated_normal: (Add)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777281: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777287: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777293: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777298: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777305: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W: (VariableV2)/job:localhost/replica:0/task:0/cpu:0
+a------------------------------------******------------------------------------------a
+Device mapping: no known devices.
+siamese/fc3b/Momentum: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3b/Momentum/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3b/Momentum/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Momentum: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Momentum/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Momentum/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b/Momentum: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b/Momentum/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b/Momentum/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Momentum: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Momentum/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Momentum/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b/Momentum: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b/Momentum/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b/Momentum/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Momentum: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Momentum/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Momentum/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+gradients/Fill: (Fill): /job:localhost/replica:0/task:0/cpu:0
+log_loss/assert_broadcastable/static_scalar_check_success: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+log_loss/ones_like: (Fill): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Select_grad/zeros_like: (ZerosLike): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/assert_broadcastable/static_scalar_check_success: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/ones_like: (Fill): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/zeros_like: (ZerosLike): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/Equal: (Equal): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/Select: (Select): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3b: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3b/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3b/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Initializer/truncated_normal/TruncatedNormal: (TruncatedNormal): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Initializer/truncated_normal/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Initializer/truncated_normal: (Add): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Initializer/truncated_normal/TruncatedNormal: (TruncatedNormal): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Initializer/truncated_normal/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Initializer/truncated_normal: (Add): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b/read: (Identity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W: (VariableV2): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/read: (I2017-07-21 22:37:54.777316: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/read: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777322: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Initializer/truncated_normal/TruncatedNormal: (TruncatedNormal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777329: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Initializer/truncated_normal/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777336: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Initializer/truncated_normal: (Add)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777342: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Assign: (Assign)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777349: I tensorflow/core/common_runtime/simple_placer.cc:841] init: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777356: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777363: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/sub: (Sub)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777371: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777378: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/MatMul_3: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777385: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/BiasAdd_3: (BiasAdd)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777392: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Relu_2: (Relu)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777399: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/MatMul_4: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777406: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/BiasAdd_4: (BiasAdd)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777413: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Relu_3: (Relu)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777420: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/MatMul_5: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777427: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/BiasAdd_5: (BiasAdd)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777434: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777441: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777448: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/BiasAdd: (BiasAdd)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777459: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Relu: (Relu)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777466: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777473: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/BiasAdd_1: (BiasAdd)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777479: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Relu_1: (Relu)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777486: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/MatMul_2: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777492: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/BiasAdd_2: (BiasAdd)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777499: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Shape_1: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777506: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777513: I tensorflow/core/common_runtime/simple_placer.cc:841] Sub: (Sub)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777520: I tensorflow/core/common_runtime/simple_placer.cc:841] Sigmoid: (Sigmoid)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777527: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Shape_1: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777534: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777542: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777549: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777556: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/sub_1: (Sub)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777564: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777570: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777577: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/add_1: (Add)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777584: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Log_1: (Log)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777591: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/Shape_1: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777598: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777604: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Mul_1: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777611: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Shape_1: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777618: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/add: (Add)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777625: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Log: (Log)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777631: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/Shape_1: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777641: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777649: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777655: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Neg: (Neg)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777662: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777669: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777676: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/sub_2: (Sub)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777684: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+dentity): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Initializer/truncated_normal/TruncatedNormal: (TruncatedNormal): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Initializer/truncated_normal/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Initializer/truncated_normal: (Add): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Assign: (Assign): /job:localhost/replica:0/task:0/cpu:0
+init: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+log_loss/sub: (Sub): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+siamese/MatMul_3: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+siamese/BiasAdd_3: (BiasAdd): /job:localhost/replica:0/task:0/cpu:0
+siamese/Relu_2: (Relu): /job:localhost/replica:0/task:0/cpu:0
+siamese/MatMul_4: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+siamese/BiasAdd_4: (BiasAdd): /job:localhost/replica:0/task:0/cpu:0
+siamese/Relu_3: (Relu): /job:localhost/replica:0/task:0/cpu:0
+siamese/MatMul_5: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+siamese/BiasAdd_5: (BiasAdd): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+siamese/MatMul: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+siamese/BiasAdd: (BiasAdd): /job:localhost/replica:0/task:0/cpu:0
+siamese/Relu: (Relu): /job:localhost/replica:0/task:0/cpu:0
+siamese/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+siamese/BiasAdd_1: (BiasAdd): /job:localhost/replica:0/task:0/cpu:0
+siamese/Relu_1: (Relu): /job:localhost/replica:0/task:0/cpu:0
+siamese/MatMul_2: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+siamese/BiasAdd_2: (BiasAdd): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Shape_1: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+Sub: (Sub): /job:localhost/replica:0/task:0/cpu:0
+Sigmoid: (Sigmoid): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/Shape_1: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+log_loss/sub_1: (Sub): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+log_loss/add_1: (Add): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Log_1: (Log): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/Shape_1: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Mul_1: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Shape_1: (Shape): /job:localhost/replica:0/task:0/cpu:0
+log_loss/add: (Add): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Log: (Log): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/Shape_1: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Neg: (Neg): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+log_loss/sub_2: (Sub): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localho2017-07-21 22:37:54.777695: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777705: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/ones_like/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777717: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/ones_like: (Fill)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777726: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/Shape_1: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777733: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/BroadcastGradientArgs: (BroadcastGradientArgs)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777740: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777747: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777754: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777760: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Equal: (Equal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777767: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Select: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777781: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Greater: (Greater)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777789: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/assert_broadcastable/values/shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777797: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Mul_2: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777805: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_grad/Shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777812: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777819: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777826: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Neg: (Neg)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777833: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/RealDiv_1: (RealDiv)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777846: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/RealDiv_2: (RealDiv)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777854: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/zeros_like: (ZerosLike)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777860: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/div: (RealDiv)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777867: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/value_grad/zeros_like: (ZerosLike)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777874: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/value_grad/Select_1: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777881: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/value_grad/Select: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777888: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/value_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777894: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/value_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777900: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/value_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777907: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777914: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777920: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777927: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/RealDiv: (RealDiv)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777934: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777942: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777949: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777955: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777962: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Select_grad/Select_1: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777969: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Select_grad/Select: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777976: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Select_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777982: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Select_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777989: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.777996: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present_grad/Tile: (Tile)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778003: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/mul_1: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778015: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778023: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778030: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778038: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+st/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/ones_like/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/ones_like: (Fill): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/Shape_1: (Shape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/BroadcastGradientArgs: (BroadcastGradientArgs): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present: (Sum): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Equal: (Equal): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Select: (Select): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Greater: (Greater): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/assert_broadcastable/values/shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Mul_2: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_grad/Shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Neg: (Neg): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/RealDiv_1: (RealDiv): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/RealDiv_2: (RealDiv): /job:localhost/replica:0/task:0/cpu:0
+log_loss/zeros_like: (ZerosLike): /job:localhost/replica:0/task:0/cpu:0
+log_loss/div: (RealDiv): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/value_grad/zeros_like: (ZerosLike): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/value_grad/Select_1: (Select): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/value_grad/Select: (Select): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/value_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/value_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/value_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/RealDiv: (RealDiv): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Select_grad/Select_1: (Select): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Select_grad/Select: (Select): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Select_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Select_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present_grad/Tile: (Tile): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/mul_1: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weigh2017-07-21 22:37:54.778050: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778058: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778065: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778072: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights/ones_like_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778078: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778085: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Select_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778091: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778098: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_1_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778105: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_1_grad/Tile: (Tile)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778112: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778119: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_grad/Tile: (Tile)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778126: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/mul_1: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778133: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778139: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778146: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778153: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778159: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778166: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778172: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778182: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778189: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778196: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Neg: (Neg)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778203: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778209: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778216: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778223: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778229: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778236: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/mul_1: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778243: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778251: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778258: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778265: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778271: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778278: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778284: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778291: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Log_1_grad/Reciprocal: (Reciprocal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778298: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Log_1_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778305: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778311: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778318: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778325: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778331: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778337: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778347: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+ts_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights/ones_like_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Select_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_1_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_1_grad/Tile: (Tile): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_grad/Tile: (Tile): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/mul_1: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Neg: (Neg): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/mul_1: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Log_1_grad/Reciprocal: (Reciprocal): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Log_1_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/S2017-07-21 22:37:54.778359: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778367: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Neg: (Neg)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778373: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778380: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778387: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778395: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778402: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778408: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778415: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_1_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778421: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_2_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778428: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Neg_grad/Neg: (Neg)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778435: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/mul_1: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778442: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778449: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778456: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778463: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778470: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778477: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778484: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778490: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Log_grad/Reciprocal: (Reciprocal)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778497: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Log_grad/mul: (Mul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778504: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778511: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778521: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778528: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778535: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778541: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778547: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778553: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778560: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sigmoid_grad/SigmoidGrad: (SigmoidGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778567: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Sum_1: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778573: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Neg: (Neg)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778580: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Reshape_1: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778587: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Sum: (Sum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778594: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/Reshape: (Reshape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778602: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778608: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778615: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_2_grad/BiasAddGrad: (BiasAddGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778623: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_2_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778630: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_2_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778636: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_2_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778643: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_2_grad/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778651: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_2_grad/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778657: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_2_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778664: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_2_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778670: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_2_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+um_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/Neg: (Neg): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_1_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_2_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Neg_grad/Neg: (Neg): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/mul_1: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Log_grad/Reciprocal: (Reciprocal): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Log_grad/mul: (Mul): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN: (AddN): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sigmoid_grad/SigmoidGrad: (SigmoidGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Sum_1: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Neg: (Neg): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Reshape_1: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Sum: (Sum): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/Reshape: (Reshape): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_2_grad/BiasAddGrad: (BiasAddGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_2_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_2_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_2_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_2_grad/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_2_grad/MatMul: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_2_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_2_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_2_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/sia2017-07-21 22:37:54.778683: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/Relu_1_grad/ReluGrad: (ReluGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778693: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_1_grad/BiasAddGrad: (BiasAddGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778701: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_1_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778708: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_1_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778714: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_1_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778721: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_1_grad/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778728: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_1_grad/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778736: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_1_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778742: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_1_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778749: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_1_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778756: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/Relu_grad/ReluGrad: (ReluGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778765: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_grad/BiasAddGrad: (BiasAddGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778782: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778789: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778795: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778803: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_grad/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778809: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_grad/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778817: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778823: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778829: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778836: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Sub_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778843: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_5_grad/BiasAddGrad: (BiasAddGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778850: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_5_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778860: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_5_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778867: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN_1: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778874: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/update_siamese/fc3b/ApplyMomentum: (ApplyMomentum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778880: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_5_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778887: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_5_grad/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778894: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_5_grad/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778902: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_5_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778908: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_5_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778914: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN_2: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778920: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/update_siamese/fc3W/ApplyMomentum: (ApplyMomentum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778927: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_5_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778934: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/Relu_3_grad/ReluGrad: (ReluGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778941: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_4_grad/BiasAddGrad: (BiasAddGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778948: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_4_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778954: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_4_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778960: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN_3: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778967: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/update_siamese/fc2b/ApplyMomentum: (ApplyMomentum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778973: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_4_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778980: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_4_grad/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+mese/Relu_1_grad/ReluGrad: (ReluGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_1_grad/BiasAddGrad: (BiasAddGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_1_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_1_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_1_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_1_grad/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_1_grad/MatMul: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_1_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_1_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_1_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/Relu_grad/ReluGrad: (ReluGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_grad/BiasAddGrad: (BiasAddGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_grad/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_grad/MatMul: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/Sub_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_5_grad/BiasAddGrad: (BiasAddGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_5_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_5_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN_1: (AddN): /job:localhost/replica:0/task:0/cpu:0
+Momentum/update_siamese/fc3b/ApplyMomentum: (ApplyMomentum): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_5_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_5_grad/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_5_grad/MatMul: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_5_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_5_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN_2: (AddN): /job:localhost/replica:0/task:0/cpu:0
+Momentum/update_siamese/fc3W/ApplyMomentum: (ApplyMomentum): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_5_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/Relu_3_grad/ReluGrad: (ReluGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_4_grad/BiasAddGrad: (BiasAddGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_4_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_4_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN_3: (AddN): /job:localhost/replica:0/task:0/cpu:0
+Momentum/update_siamese/fc2b/ApplyMomentum: (ApplyMomentum): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_4_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_4_grad/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_4_grad/MatMul: (MatM2017-07-21 22:37:54.778992: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_4_grad/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.778999: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_4_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779006: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_4_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779012: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN_4: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779018: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/update_siamese/fc2W/ApplyMomentum: (ApplyMomentum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779028: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_4_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779035: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/Relu_2_grad/ReluGrad: (ReluGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779042: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_3_grad/BiasAddGrad: (BiasAddGrad)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779050: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_3_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779056: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_3_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779062: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN_5: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779069: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/update_siamese/fc1b/ApplyMomentum: (ApplyMomentum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779075: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/BiasAdd_3_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779082: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_3_grad/MatMul_1: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779089: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_3_grad/MatMul: (MatMul)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779096: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_3_grad/tuple/group_deps: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779102: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_3_grad/tuple/control_dependency_1: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779108: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/AddN_6: (AddN)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779114: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/update_siamese/fc1W/ApplyMomentum: (ApplyMomentum)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779121: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum: (NoOp)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779128: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/siamese/MatMul_3_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779134: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_grad/tuple/control_dependency: (Identity)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779141: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/value: (Select)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779148: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/assert_broadcastable/values/shape: (Shape)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779156: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/momentum: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779164: I tensorflow/core/common_runtime/simple_placer.cc:841] Momentum/learning_rate: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779170: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3b/Momentum/Initializer/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779177: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Momentum/Initializer/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779183: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2b/Momentum/Initializer/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779193: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Momentum/Initializer/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779199: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1b/Momentum/Initializer/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779205: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Momentum/Initializer/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779212: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/sub_1_grad/Shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779219: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_grad/Shape_1: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779226: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/add_1_grad/Shape_1: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779233: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights/ones_like_grad/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779240: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present/broadcast_weights_grad/Shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779247: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Mul_2_grad/Shape_1: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779254: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/num_present_grad/Reshape/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779261: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_grad/Reshape/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779268: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_1_grad/Tile/multiples: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779275: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/Sum_1_grad/Reshape/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779282: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Shape_1: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779290: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/log_loss/div_grad/Shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779297: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779304: I tensorflow/core/common_runtime/simple_placer.cc:841] gradients/Shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+ul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_4_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_4_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN_4: (AddN): /job:localhost/replica:0/task:0/cpu:0
+Momentum/update_siamese/fc2W/ApplyMomentum: (ApplyMomentum): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_4_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/Relu_2_grad/ReluGrad: (ReluGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_3_grad/BiasAddGrad: (BiasAddGrad): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_3_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_3_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN_5: (AddN): /job:localhost/replica:0/task:0/cpu:0
+Momentum/update_siamese/fc1b/ApplyMomentum: (ApplyMomentum): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/BiasAdd_3_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_3_grad/MatMul_1: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_3_grad/MatMul: (MatMul): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_3_grad/tuple/group_deps: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_3_grad/tuple/control_dependency_1: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/AddN_6: (AddN): /job:localhost/replica:0/task:0/cpu:0
+Momentum/update_siamese/fc1W/ApplyMomentum: (ApplyMomentum): /job:localhost/replica:0/task:0/cpu:0
+Momentum: (NoOp): /job:localhost/replica:0/task:0/cpu:0
+gradients/siamese/MatMul_3_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_grad/tuple/control_dependency: (Identity): /job:localhost/replica:0/task:0/cpu:0
+log_loss/value: (Select): /job:localhost/replica:0/task:0/cpu:0
+log_loss/assert_broadcastable/values/shape: (Shape): /job:localhost/replica:0/task:0/cpu:0
+Momentum/momentum: (Const): /job:localhost/replica:0/task:0/cpu:0
+Momentum/learning_rate: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3b/Momentum/Initializer/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Momentum/Initializer/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2b/Momentum/Initializer/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Momentum/Initializer/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1b/Momentum/Initializer/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Momentum/Initializer/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/sub_1_grad/Shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_grad/Shape_1: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/add_1_grad/Shape_1: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights/ones_like_grad/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present/broadcast_weights_grad/Shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Mul_2_grad/Shape_1: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/num_present_grad/Reshape/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_grad/Reshape/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_1_grad/Tile/multiples: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/Sum_1_grad/Reshape/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Shape_1: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/log_loss/div_grad/Shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+gradients/Shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/ones_like/Const: (Const): /job2017-07-21 22:37:54.779317: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/ones_like/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779324: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/ones_like/Shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779332: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Equal/y: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779339: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Greater/y: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779346: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Const_1: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779353: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779360: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/ones_like/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779367: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/assert_broadcastable/values/rank: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779380: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/assert_broadcastable/weights/rank: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779387: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/broadcast_weights/assert_broadcastable/weights/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779395: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/ones_like/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779401: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/ones_like/Shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779408: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/num_present/Equal/y: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779415: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779422: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/ToFloat_3/x: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779429: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/assert_broadcastable/values/rank: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779436: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/assert_broadcastable/weights/rank: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779443: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/assert_broadcastable/weights/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779450: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/assert_broadcastable/weights: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779457: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/add_1/y: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779464: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/sub_1/x: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779471: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/sub/x: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779477: I tensorflow/core/common_runtime/simple_placer.cc:841] log_loss/add/y: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779484: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Const_5: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779490: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Const_4: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779497: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Const_3: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779504: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Const_2: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779510: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Initializer/truncated_normal/stddev: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779516: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Initializer/truncated_normal/mean: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779522: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc3W/Initializer/truncated_normal/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779529: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Const_1: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779535: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Initializer/truncated_normal/stddev: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779541: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Initializer/truncated_normal/mean: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779551: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc2W/Initializer/truncated_normal/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779558: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/Const: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779564: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Initializer/truncated_normal/stddev: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779571: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Initializer/truncated_normal/mean: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779576: I tensorflow/core/common_runtime/simple_placer.cc:841] siamese/fc1W/Initializer/truncated_normal/shape: (Const)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779584: I tensorflow/core/common_runtime/simple_placer.cc:841] label: (Placeholder)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779590: I tensorflow/core/common_runtime/simple_placer.cc:841] R: (Placeholder)/job:localhost/replica:0/task:0/cpu:0
+2017-07-21 22:37:54.779597: I tensorflow/core/common_runtime/simple_placer.cc:841] L: (Placeholder)/job:localhost/replica:0/task:0/cpu:0
+:localhost/replica:0/task:0/cpu:0
+log_loss/ones_like/Shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Equal/y: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Greater/y: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Const_1: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/ones_like/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/assert_broadcastable/values/rank: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/assert_broadcastable/weights/rank: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/broadcast_weights/assert_broadcastable/weights/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/ones_like/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/ones_like/Shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/num_present/Equal/y: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/ToFloat_3/x: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/assert_broadcastable/values/rank: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/assert_broadcastable/weights/rank: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/assert_broadcastable/weights/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/assert_broadcastable/weights: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/add_1/y: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/sub_1/x: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/sub/x: (Const): /job:localhost/replica:0/task:0/cpu:0
+log_loss/add/y: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/Const_5: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/Const_4: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/Const_3: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/Const_2: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Initializer/truncated_normal/stddev: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Initializer/truncated_normal/mean: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc3W/Initializer/truncated_normal/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/Const_1: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Initializer/truncated_normal/stddev: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Initializer/truncated_normal/mean: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc2W/Initializer/truncated_normal/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/Const: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Initializer/truncated_normal/stddev: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Initializer/truncated_normal/mean: (Const): /job:localhost/replica:0/task:0/cpu:0
+siamese/fc1W/Initializer/truncated_normal/shape: (Const): /job:localhost/replica:0/task:0/cpu:0
+label: (Placeholder): /job:localhost/replica:0/task:0/cpu:0
+R: (Placeholder): /job:localhost/replica:0/task:0/cpu:0
+L: (Placeholder): /job:localhost/replica:0/task:0/cpu:0
+epoch 0  time: 1501.257434 loss 0.67536 acc 57.63
+epoch 1  time: 1493.282425 loss 0.66746 acc 59.26
+epoch 2  time: 1635.665959 loss 0.66393 acc 59.88
+epoch 3  time: 1499.515206 loss 0.66122 acc 60.30
+epoch 4  time: 1497.032035 loss 0.65887 acc 60.70
+epoch 5  time: 1500.312885 loss 0.65671 acc 61.04
+epoch 6  time: 1501.731497 loss 0.65465 acc 61.39
+epoch 7  time: 1844.868948 loss 0.65262 acc 61.65
+epoch 8  time: 1999.835114 loss 0.65059 acc 61.93
+epoch 9  time: 2021.060731 loss 0.64855 acc 62.22
+epoch 10  time: 1983.277154 loss 0.64646 acc 62.53
+epoch 11  time: 2017.442815 loss 0.64432 acc 62.83
+epoch 12  time: 2004.775003 loss 0.64212 acc 63.12
+epoch 13  time: 2016.347362 loss 0.63983 acc 63.44
+epoch 14  time: 1990.996889 loss 0.63746 acc 63.77
+epoch 15  time: 1998.734364 loss 0.63499 acc 64.10
+epoch 16  time: 2012.435707 loss 
