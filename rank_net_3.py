@@ -73,9 +73,9 @@ def read_data_create_pairs(imageList_, safty):
 
 def ss_net(x, dropout_ratio):
     # weights = []
-    fc1 = fc_layer(x, 4096, "fc1")
+    fc1 = fc_layer(x, 1024, "fc1")
     ac1 = tf.nn.relu(fc1)
-    fc2 = fc_layer(ac1, 4096, "fc2")
+    fc2 = fc_layer(ac1, 1024, "fc2")
     mean1, variance1 = tf.nn.moments(fc2, [0,1,2])
     bn_fc2 = tf.nn.batch_normalization(fc2, mean=mean1, variance=variance1)
     ac2 = tf.nn.relu(bn_fc2)
@@ -88,10 +88,12 @@ def ss_net(x, dropout_ratio):
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
     n_prev_weight = bottom.get_shape()[1]   # bottom.get_shape() 即 （256, 4096）
-    initer = tf.truncated_normal_initializer(stddev=0.01)
-    # 截断正太分布 均值mean（=0）,标准差stddev,只保留[mean-2*stddev,mean+2*stddev]内的随机数
-    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=tf.constant(0.01, shape=[n_weight], dtype=tf.float32))
+    # initer = tf.truncated_normal_initializer(stddev=0.01)
+    # # 截断正太分布 均值mean（=0）,标准差stddev,只保留[mean-2*stddev,mean+2*stddev]内的随机数
+    # W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
+    # b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=tf.constant(0.01, shape=[n_weight], dtype=tf.float32))
+    W = glorot(shape=[n_prev_weight, n_weight], name = name + 'W')
+    b = glorot(shape=[n_weight], name = name + 'b')
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
 
@@ -104,13 +106,11 @@ def glorot(shape, name=None):
 
 def log_loss_(label, difference):
     predicts = difference
-    # labels = tf.div(tf.add(label, 1), 2)
     loss = tf.losses.log_loss(predicts, label)
     return loss
 
 
 def compute_accuracy(prediction, label):
-    labels = np.divide(np.add(label, 1), 2)
     acc = accuracy_score(labels, prediction)
     # sklearn.metrics.accuracy_score(y_true, y_pred, normalize=True, sample_weight=None)
     return acc
@@ -133,7 +133,8 @@ validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
 test_x, test_labels = read_data_create_pairs(imageList, test_safty)
 #####################################################
 
-
+X -= np.mean(X, axis=0)
+X /= np.std(X, axis=0)
 #####################################################
 with tf.device('/gpu:0'):
     images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
