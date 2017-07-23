@@ -1,0 +1,23 @@
+epoch 0 time: 50.125670 loss 7.92336 acc 50.79
+epoch 1 time: 49.044301 loss 7.93067 acc 50.80
+epoch 2 time: 49.287422 loss 7.93067 acc 50.80
+epoch 3 time: 49.307602 loss 7.93067 acc 50.80
+epoch 4 time: 49.286822 loss 7.93067 acc 50.80
+epoch 5 time: 49.025314 loss 7.93067 acc 50.80
+epoch 6 time: 48.876077 loss 7.93067 acc 50.80
+epoch 7 time: 49.343994 loss 7.93067 acc 50.80
+epoch 8 time: 49.194704 loss 7.93067 acc 50.80
+epoch 9 time: 50.582879 loss 7.93067 acc 50.80
+epoch 10 time: 50.401808 loss 7.93067 acc 50.80
+epoch 11 time: 49.196261 loss 7.93067 acc 50.80
+epoch 12 time: 49.496149 loss 7.93067 acc 50.80
+epoch 13 time: 49.924844 loss 7.93067 acc 50.80
+epoch 14 time: 50.303265 loss 7.93067 acc 50.80
+epoch 15 time: 50.037901 loss 7.93067 acc 50.80
+epoch 16 time: 49.402593 loss 7.93067 acc 50.80
+epoch 17 time: 49.352406 loss 7.93067 acc 50.80
+epoch 18 time: 49.334824 loss 7.93067 acc 50.80
+epoch 19 time: 49.387314 loss 7.93067 acc 50.80
+Accuract training set 50.80
+Accuract validate set 50.96
+Accuract test set 50.63
