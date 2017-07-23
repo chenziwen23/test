@@ -56,8 +56,8 @@ def read_data_create_pairs(imageList_, safty):
                 x2 = j
                 if x1 != -1:
                     break
-        temp = [temp_f[x1],temp_f[x2]] # temp_f[x1]是一个数组[...]
-        pairs.append(int(temp))
+        temp = [temp_f[x1],temp_f[x2]]
+        pairs.append(temp)
         labels.append(flag)
     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
 
@@ -110,9 +110,7 @@ def next_batch(s_, e_, inputs, labels_):
     y_ = np.reshape(labels_[s_:e_], (len(range(s_, e_)), 1))
     return input1_, input2_, y_
 
-batch_size = 256
-
-# with tf.device('/gpu:0'):
+batch_size = 512
 # create training+validate+test pairs of image
 imageList = readImageList(id_txt)
 train_x, train_labels = read_data_create_pairs(imageList, train_safty)
@@ -133,6 +131,7 @@ with tf.device('/gpu:1'):
     optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
 print('a------------------------------------******------------------------------------------a')
 # 启动会话-图
+# with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
 with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
     # 初始化所有变量
     tf.global_variables_initializer().run()
@@ -161,18 +160,18 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
         duration = time.time() - start_time
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
-    predict = difference.eval(feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1], labels: train_labels})
+    predict = difference.eval(feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})
     tr_acc = compute_accuracy(predict, y)
     print('Accuract training set %0.2f' % (100 * tr_acc))
 
     # Validate model
-    predict = difference.eval(feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1], labels: validate_labels})
+    predict = difference.eval(feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1]})
     y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
     vl_acc = compute_accuracy(predict, y)
     print('Accuract validate set %0.2f' % (100 * vl_acc))
 
     # Test model
-    predict = difference.eval(feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1], labels: test_labels})
+    predict = difference.eval(feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1]})
     y = np.reshape(test_labels, (test_labels.shape[0], 1))
     te_acc = compute_accuracy(predict, y)
     print('Accuract test set %0.2f' % (100 * te_acc))
