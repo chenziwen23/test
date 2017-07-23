@@ -72,9 +72,11 @@ def ss_net(x,size):
 
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
-    n_prev_weight = bottom.get_shape()[1]   # bottom.get_shape() 即 （256, 4096）
-    W = glorot_w(shape=[n_prev_weight, n_weight], name=name + 'W')
-    b = glorot_b(shape=[n_weight], name=name + 'b')
+    n_prev_weight = bottom.get_shape()[1]
+    initer = glorot_w(shape=[int(n_prev_weight), n_weight], name=name + 'W')
+    initer2 = glorot_b(shape=[n_weight], name=name + 'b')
+    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
+    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=initer2)
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
 
@@ -123,29 +125,29 @@ test_x, test_labels = read_data_create_pairs(imageList, test_safty)
 images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
 images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
 labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
+learning_rate = tf.placeholder('float')
+size = tf.placeholder('int')
 
 batch_size = 256
-grid, candidate_para = [], []
-tuned_parameters = {'size':(4096,1024,256,64,16), 'learning_rate':(1e-2,5e-3,1e-4,5e-4)}
+grid, t_p = [], []
+tuned_parameters = {'size': (4096,1024,256,64,16), 'learning_rate': (1e-2,5e-3,1e-4,5e-4)}
 for i in range(len(tuned_parameters['size'])):
     for j in range(len(tuned_parameters['learning_rate'])):
         temp = [tuned_parameters['size'][i],tuned_parameters['learning_rate'][j]]
-        candidate_para.append(temp)
-        print('----------------------------------------------------------------------------------------------------'
-              '----------------------------------temp divided well-------------------------------------------------'
-              '----------------------------------------------------------------------------------------------------')
+        t_p.append(temp)
+        print('------------------------------------temp divided well----------------------------------------------')
 
-for k in range(len(candidate_para)):
+for k in range(len(t_p)):
     with tf.device('/gpu:1'):
         with tf.variable_scope("siamese") as scope:
-            model1 = ss_net(images_L,candidate_para[k][0])
+            model1 = ss_net(images_L, size)
             scope.reuse_variables()
-            model2 = ss_net(images_R,candidate_para[k][0])
+            model2 = ss_net(images_R, size)
 
         difference = tf.sigmoid(tf.subtract(model2, model1))
         loss = log_loss_(labels, difference)
-        optimizer = tf.train.AdamOptimizer(candidate_para[k][1]).minimize(loss)
-    print('a--------------------------------------GGGGGGGGGGGGGG----------------------------------------------a')
+        optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)
+    print('a---------------------------------------GGGGGGGGGGGGGG-----------------------------------------------a')
 
     # 启动会话-图
     with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
@@ -163,9 +165,9 @@ for k in range(len(candidate_para)):
                 # Fit training using batch data
                 input1, input2, y = next_batch(s, e, train_x, train_labels)
                 _, loss_value, predict = sess.run([optimizer, loss, difference],
-                                                  feed_dict={images_L: input1, images_R: input2, labels: y})
-                feature1 = model1.eval(feed_dict={images_L: input1})
-                feature2 = model2.eval(feed_dict={images_R: input2})
+                                                  feed_dict={images_L: input1, images_R: input2, labels: y, size:t_p[k][0],learning_rate:t_p[k][1]})
+                feature1 = model1.eval(feed_dict={images_L: input1, size:t_p[k][0]})
+                feature2 = model2.eval(feed_dict={images_R: input2, size:t_p[k][0]})
                 tr_acc = compute_accuracy(predict, y)
                 if math.isnan(tr_acc) and epoch != 0:
                     print('tr_acc: %0.2f' % tr_acc)
@@ -175,28 +177,28 @@ for k in range(len(candidate_para)):
             # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
             duration = time.time() - start_time
             print('epoch %d time: %f loss: %0.5f acc: %0.2f' %
-                  (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
+                  (epoch, duration, avg_loss / total_batch, avg_acc / total_batch))
         y = np.reshape(train_labels, (train_labels.shape[0], 1))
         predict = difference.eval(
-            feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})
+            feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1], size:t_p[k][0]})
         tr_acc = compute_accuracy(predict, y)
-        print('%d Accuract training set: %0.2f' % (k, 100 * tr_acc))
+        print('%d Accuracy training set: %0.2f' % (k, 100 * tr_acc))
 
         # Validate model
         predict = difference.eval(
-            feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1]})
+            feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1], size:t_p[k][0]})
         y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
         vl_acc = compute_accuracy(predict, y)
-        print('%d Accuract validate set: %0.2f' % (k, 100 * vl_acc))
+        print('%d Accuracy validate set: %0.2f' % (k, 100 * vl_acc))
 
         # Test model
         predict = difference.eval(
-            feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1]})
+            feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1], size:t_p[k][0]})
         y = np.reshape(test_labels, (test_labels.shape[0], 1))
         te_acc = compute_accuracy(predict, y)
-        print('%d Accuract test set: %0.2f' % (k, 100 * te_acc))
+        print('%d Accuracy test set: %0.2f' % (k, 100 * te_acc))
     tmp_para = 100*((tr_acc+vl_acc+te_acc)/3)
     grid.append(tmp_para)
 print '准确率最好的是 '+str(max(grid))
 par = grid.index(max(grid))
-print '对应准确率最好的一组参数是 '+str(candidate_para[par])
+print '对应准确率最好的一组参数是 ' + str(t_p[par])
