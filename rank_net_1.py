@@ -72,8 +72,10 @@ def ss_net(x):
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
     n_prev_weight = bottom.get_shape()[1]
-    W = glorot_w(shape=[int(n_prev_weight), n_weight], name=name + 'W')
-    b = glorot_b(shape=[n_weight], name=name + 'b')
+    initer = glorot_w(shape=[int(n_prev_weight), n_weight], name=name + 'W')
+    initer2 = glorot_b(shape=[n_weight], name=name + 'b')
+    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
+    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=initer2)
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
 
