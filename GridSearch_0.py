@@ -33,7 +33,7 @@ def read_data_create_pairs(imageList_, safty):
     f = open(safty)
     reader = csv.reader(f)
     header = next(reader)
-    data = np.genfromtxt(f_vector_csv,delimiter=',',dtype=float)
+    data = np.genfromtxt(f_vector_csv, delimiter=',', dtype=float)
     temp_val,  temp = [], []
     pairs = []
     labels = []
@@ -54,7 +54,7 @@ def read_data_create_pairs(imageList_, safty):
                 x2 = j
                 if x1 != -1:
                     break
-        temp = [data[x1],data[x2]]
+        temp = [data[x1], data[x2]]
         pairs.append(temp)
         labels.append(flag)
     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
@@ -73,35 +73,35 @@ def ss_net(x,size):
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
     n_prev_weight = bottom.get_shape()[1]   # bottom.get_shape() 即 （256, 4096）
-    # initer = tf.truncated_normal_initializer(stddev=0.01)
-    # # 截断正太分布 均值mean（=0）,标准差stddev,只保留[mean-2*stddev,mean+2*stddev]内的随机数
-    # W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-    # b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=tf.constant(0.01,shape=[n_weight],dtype=tf.float32))
-    W = glorot(shape=[n_prev_weight, n_weight], name = name + 'W')
-    b = glorot(shape=[n_weight], name = name + 'b')
+    W = glorot_w(shape=[n_prev_weight, n_weight], name=name + 'W')
+    b = glorot_b(shape=[n_weight], name=name + 'b')
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
 
 
-def glorot(shape, name=None):
-    if len(shape) == 2:
-        init_range = np.sqrt(2.0/(shape[0]+shape[1]))
-    elif len(shape) == 1:
-        init_range = np.sqrt(2.0 / (shape[0] + 0))
+def glorot_w(shape, name=None):
+    init_range = np.sqrt(2.0/(shape[0]+shape[1]))
     initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
     return tf.Variable(initial, name=name)
 
 
-def log_loss_(label, difference):
-    predicts = difference
-    labels = np.divide(np.add(label, 1), 2)
-    loss = tf.losses.log_loss(predicts, labels)
-    return loss
+def glorot_b(shape, name=None):
+    init_range = np.sqrt(2.0 / (shape[0] + 0))
+    initial = tf.random_uniform(shape, minval= -init_range, maxval=init_range, dtype=tf.float32)
+    return tf.Variable(initial, name=name)
+
+
+def log_loss_(label, difference_):
+    predicts = difference_
+    labels_ = tf.div(tf.add(label, 1), 2)
+    loss_ = tf.losses.log_loss(labels = labels_, predictions = predicts)
+    return loss_
 
 
 def compute_accuracy(prediction, label):
-    labels = np.divide(np.add(label, 1), 2)
-    acc = accuracy_score(labels, prediction)
+    label_ = np.divide(np.add(label, 1), 2)
+    prediction_ = map(lambda x: [[i, 0][i < 0.5] and [i, 1][i >= 0.5] for i in x], prediction)
+    acc = accuracy_score(label_, prediction_)
     # sklearn.metrics.accuracy_score(y_true, y_pred, normalize=True, sample_weight=None)
     return acc
     # 返回一个float型的得分数据
@@ -113,23 +113,23 @@ def next_batch(s_, e_, inputs, labels_):
     y_ = np.reshape(labels_[s_:e_], (len(range(s_, e_)), 1))
     return input1_, input2_, y_
 
-with tf.device('/gpu:1'):
-    # create training+validate+test pairs of image
-    imageList = readImageList(id_txt)
-    train_x, train_labels = read_data_create_pairs(imageList, train_safty)
-    validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
-    test_x, test_labels = read_data_create_pairs(imageList, test_safty)
 
-    images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
-    images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
-    labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
+# create training+validate+test pairs of image
+imageList = readImageList(id_txt)
+train_x, train_labels = read_data_create_pairs(imageList, train_safty)
+validate_x, validate_labels = read_data_create_pairs(imageList, validate_safty)
+test_x, test_labels = read_data_create_pairs(imageList, test_safty)
+
+images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
+images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
+labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
 
 batch_size = 256
 grid, candidate_para = [], []
-tuned_parameters = {'size':(4096,1024,256,64,16), 'learning rate':(1e-2,5e-3,1e-4,5e-4)}
+tuned_parameters = {'size':(4096,1024,256,64,16), 'learning_rate':(1e-2,5e-3,1e-4,5e-4)}
 for i in range(len(tuned_parameters['size'])):
-    for j in range(len(tuned_parameters['learning rate'])):
-        temp = [tuned_parameters['size'][i],tuned_parameters['learning rate'][j]]
+    for j in range(len(tuned_parameters['learning_rate'])):
+        temp = [tuned_parameters['size'][i],tuned_parameters['learning_rate'][j]]
         candidate_para.append(temp)
         print('----------------------------------------------------------------------------------------------------'
               '----------------------------------temp divided well-------------------------------------------------'
@@ -174,8 +174,8 @@ for k in range(len(candidate_para)):
                 avg_acc += tr_acc * 100
             # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
             duration = time.time() - start_time
-            print('epoch %d time: %f loss: %0.5f acc: %0.2f' % (
-            epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
+            print('epoch %d time: %f loss: %0.5f acc: %0.2f' %
+                  (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
         y = np.reshape(train_labels, (train_labels.shape[0], 1))
         predict = difference.eval(
             feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})

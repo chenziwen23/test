@@ -85,31 +85,35 @@ def ss_net(x, dropout_ratio):
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
     n_prev_weight = bottom.get_shape()[1]   # bottom.get_shape() 即 （256, 4096）
-    initer = tf.truncated_normal_initializer(stddev=0.01)
-    # 截断正太分布 均值mean（=0）,标准差stddev,只保留[mean-2*stddev,mean+2*stddev]内的随机数
-    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=tf.constant(0.01, shape=[n_weight], dtype=tf.float32))
+    W = glorot_w(shape=[n_prev_weight, n_weight], name=name + 'W')
+    b = glorot_b(shape=[n_weight], name=name + 'b')
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
 
 
-def glorot(shape, name=None):
-    if len(shape) == 2:
-        init_range = np.sqrt(2.0/(shape[0]+shape[1]))
-    else:
-        init_range = np.sqrt(2.0 / (shape[0] + 0))
+def glorot_w(shape, name=None):
+    init_range = np.sqrt(2.0/(shape[0]+shape[1]))
     initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
     return tf.Variable(initial, name=name)
 
 
-def log_loss_(label, difference):
-    predicts = difference
-    loss = tf.losses.log_loss(predicts, label)
-    return loss
+def glorot_b(shape, name=None):
+    init_range = np.sqrt(2.0 / (shape[0] + 0))
+    initial = tf.random_uniform(shape, minval= -init_range, maxval=init_range, dtype=tf.float32)
+    return tf.Variable(initial, name=name)
+
+
+def log_loss_(label, difference_):
+    predicts = difference_
+    labels_ = tf.div(tf.add(label, 1), 2)
+    loss_ = tf.losses.log_loss(labels = labels_, predictions = predicts)
+    return loss_
 
 
 def compute_accuracy(prediction, label):
-    acc = accuracy_score(labels, prediction)
+    label_ = np.divide(np.add(label, 1), 2)
+    prediction_ = map(lambda x: [[i, 0][i < 0.5] and [i, 1][i >= 0.5] for i in x], prediction)
+    acc = accuracy_score(label_, prediction_)
     # sklearn.metrics.accuracy_score(y_true, y_pred, normalize=True, sample_weight=None)
     return acc
     # 返回一个float型的得分数据
