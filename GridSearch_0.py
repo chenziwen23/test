@@ -33,8 +33,6 @@ def read_data_create_pairs(imageList_, safty):
     f = open(safty)
     reader = csv.reader(f)
     header = next(reader)
-    # f_f = open(f_vector_csv)
-    # reader_f = csv.reader(f_f)
     data = np.genfromtxt(f_vector_csv,delimiter=',',dtype=float)
     temp_val,  temp = [], []
     pairs = []
@@ -42,8 +40,6 @@ def read_data_create_pairs(imageList_, safty):
     x1, x2 = -1, -1
     for k in reader:
         temp_val.append(k)
-    # for k in reader_f:
-    #     temp_f.append(k)
     for i in range(len(temp_val)):
         if temp_val[i][2] == 'left':
             flag = 1
@@ -88,7 +84,10 @@ def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
 
 
 def glorot(shape, name=None):
-    init_range = np.sqrt(2.0/(shape[0]+shape[1]))
+    if len(shape) == 2:
+        init_range = np.sqrt(2.0/(shape[0]+shape[1]))
+    else:
+        init_range = np.sqrt(2.0 / (shape[0] + 0))
     initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
     return tf.Variable(initial, name=name)
 
@@ -150,7 +149,7 @@ for k in range(len(temp)):
     with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
         tf.global_variables_initializer().run()
         # 循环训练整个样本30次
-        for epoch in range(30):
+        for epoch in range(20):
             avg_loss = 0.
             avg_acc = 0.
             total_batch = int(train_x.shape[0] / batch_size)
@@ -177,20 +176,20 @@ for k in range(len(temp)):
             epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
         y = np.reshape(train_labels, (train_labels.shape[0], 1))
         predict = difference.eval(
-            feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1], labels: train_labels})
+            feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})
         tr_acc = compute_accuracy(predict, y)
         print('%d Accuract training set %0.2f' % (k, 100 * tr_acc))
 
         # Validate model
         predict = difference.eval(
-            feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1], labels: validate_labels})
+            feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1]})
         y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
         vl_acc = compute_accuracy(predict, y)
         print('%d Accuract validate set %0.2f' % (k, 100 * vl_acc))
 
         # Test model
         predict = difference.eval(
-            feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1], labels: test_labels})
+            feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1]})
         y = np.reshape(test_labels, (test_labels.shape[0], 1))
         te_acc = compute_accuracy(predict, y)
         print('%d Accuract test set %0.2f' % (k, 100 * te_acc))
