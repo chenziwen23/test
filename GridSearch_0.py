@@ -76,7 +76,7 @@ def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     # initer = tf.truncated_normal_initializer(stddev=0.01)
     # # 截断正太分布 均值mean（=0）,标准差stddev,只保留[mean-2*stddev,mean+2*stddev]内的随机数
     # W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-    # b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=tf.constant(0.01, shape=[n_weight], dtype=tf.float32))
+    # b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=tf.constant(0.01,shape=[n_weight],dtype=tf.float32))
     W = glorot(shape=[n_prev_weight, n_weight], name = name + 'W')
     b = glorot(shape=[n_weight], name = name + 'b')
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
@@ -86,7 +86,7 @@ def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
 def glorot(shape, name=None):
     if len(shape) == 2:
         init_range = np.sqrt(2.0/(shape[0]+shape[1]))
-    else:
+    elif len(shape) == 1:
         init_range = np.sqrt(2.0 / (shape[0] + 0))
     initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
     return tf.Variable(initial, name=name)
@@ -113,7 +113,7 @@ def next_batch(s_, e_, inputs, labels_):
     y_ = np.reshape(labels_[s_:e_], (len(range(s_, e_)), 1))
     return input1_, input2_, y_
 
-with tf.device('/gpu:0'):
+with tf.device('/gpu:1'):
     # create training+validate+test pairs of image
     imageList = readImageList(id_txt)
     train_x, train_labels = read_data_create_pairs(imageList, train_safty)
@@ -125,24 +125,26 @@ with tf.device('/gpu:0'):
     labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
 
 batch_size = 256
+grid, candidate_para = [], []
 tuned_parameters = {'size':(4096,1024,256,64,16), 'learning rate':(1e-2,5e-3,1e-4,5e-4)}
 for i in range(len(tuned_parameters['size'])):
     for j in range(len(tuned_parameters['learning rate'])):
         temp = [tuned_parameters['size'][i],tuned_parameters['learning rate'][j]]
+        candidate_para.append(temp)
         print('----------------------------------------------------------------------------------------------------'
               '----------------------------------temp divided well-------------------------------------------------'
               '----------------------------------------------------------------------------------------------------')
 
-for k in range(len(temp)):
+for k in range(len(candidate_para)):
     with tf.device('/gpu:1'):
         with tf.variable_scope("siamese") as scope:
-            model1 = ss_net(images_L,temp[k][0])
+            model1 = ss_net(images_L,candidate_para[k][0])
             scope.reuse_variables()
-            model2 = ss_net(images_R,temp[k][0])
+            model2 = ss_net(images_R,candidate_para[k][0])
 
         difference = tf.sigmoid(tf.subtract(model2, model1))
         loss = log_loss_(labels, difference)
-        optimizer = tf.train.AdamOptimizer(temp[k][1]).minimize(loss)
+        optimizer = tf.train.AdamOptimizer(candidate_para[k][1]).minimize(loss)
     print('a--------------------------------------GGGGGGGGGGGGGG----------------------------------------------a')
 
     # 启动会话-图
@@ -166,32 +168,35 @@ for k in range(len(temp)):
                 feature2 = model2.eval(feed_dict={images_R: input2})
                 tr_acc = compute_accuracy(predict, y)
                 if math.isnan(tr_acc) and epoch != 0:
-                    print('tr_acc %0.2f' % tr_acc)
+                    print('tr_acc: %0.2f' % tr_acc)
                     pdb.set_trace()
                 avg_loss += loss_value
                 avg_acc += tr_acc * 100
             # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
             duration = time.time() - start_time
-            print('epoch %d time: %f loss %0.5f acc %0.2f' % (
+            print('epoch %d time: %f loss: %0.5f acc: %0.2f' % (
             epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
         y = np.reshape(train_labels, (train_labels.shape[0], 1))
         predict = difference.eval(
             feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})
         tr_acc = compute_accuracy(predict, y)
-        print('%d Accuract training set %0.2f' % (k, 100 * tr_acc))
+        print('%d Accuract training set: %0.2f' % (k, 100 * tr_acc))
 
         # Validate model
         predict = difference.eval(
             feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1]})
         y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
         vl_acc = compute_accuracy(predict, y)
-        print('%d Accuract validate set %0.2f' % (k, 100 * vl_acc))
+        print('%d Accuract validate set: %0.2f' % (k, 100 * vl_acc))
 
         # Test model
         predict = difference.eval(
             feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1]})
         y = np.reshape(test_labels, (test_labels.shape[0], 1))
         te_acc = compute_accuracy(predict, y)
-        print('%d Accuract test set %0.2f' % (k, 100 * te_acc))
-
-
+        print('%d Accuract test set: %0.2f' % (k, 100 * te_acc))
+    tmp_para = 100*((tr_acc+vl_acc+te_acc)/3)
+    grid.append(tmp_para)
+print '准确率最好的是 '+str(max(grid))
+par = grid.index(max(grid))
+print '对应准确率最好的一组参数是 '+str(candidate_para[par])
