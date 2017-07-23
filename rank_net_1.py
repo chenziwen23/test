@@ -32,8 +32,6 @@ def read_data_create_pairs(imageList_, safty):
     f = open(safty)
     reader = csv.reader(f)
     header = next(reader)
-    # f_f = open(f_vector_csv)
-    # reader_f = csv.reader(f_f)
     data = np.genfromtxt(f_vector_csv,delimiter=',',dtype=float)
     temp_val,  temp = [], []
     pairs = []
@@ -41,8 +39,6 @@ def read_data_create_pairs(imageList_, safty):
     x1, x2 = -1, -1
     for k in reader:
         temp_val.append(k)
-    # for k in reader_f:
-    #     temp_f.append(k)
     for i in range(len(temp_val)):
         if temp_val[i][2] == 'left':
             flag = 1
@@ -73,22 +69,36 @@ def ss_net(x):
     return fc3
 
 
+# def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
+#     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
+#     n_prev_weight = bottom.get_shape()[1]
+#     W = glorot(shape=[int(n_prev_weight), n_weight], name = name + 'W')
+#     b = glorot(shape=[n_weight,], name = name + 'b')
+#     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
+#     return fc
+
+
+#######################################################
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
-    n_prev_weight = bottom.get_shape()[1]
-    W = glorot(shape=[int(n_prev_weight), n_weight], name = name + 'W')
-    b = glorot(shape=[n_weight,], name = name + 'b')
+    n_prev_weight = bottom.get_shape()[1]   # bottom.get_shape() 即 （256, 4096）
+    # initer = tf.truncated_normal_initializer(stddev=0.01)
+    initer_W = glorot(shape=[n_prev_weight, n_weight])
+    initer_b = glorot(shape=[n_weight])
+    # # 截断正太分布 均值mean（=0）,标准差stddev,只保留[mean-2*stddev,mean+2*stddev]内的随机数
+    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer_W)
+    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=initer_b)
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
+########################################################
 
-
-def glorot(shape, name=None):
+def glorot(shape):
     if len(shape) == 2:
         init_range = np.sqrt(2.0/(shape[0]+shape[1]))
-    else:
+    elif len(shape) == 1:
         init_range = np.sqrt(2.0 / (shape[0] + 0))
     initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
-    return tf.Variable(initial, name=name)
+    return tf.Variable(initial)
 
 
 def log_loss_(label, difference):
@@ -141,7 +151,7 @@ print('a------------------------------------******------------------------------
 with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
     tf.global_variables_initializer().run()
     # 循环训练整个样本30次
-    for epoch in range(20):
+    for epoch in range(30):
         avg_loss = 0.
         avg_acc = 0.
         total_batch = int(train_x.shape[0] / batch_size)
@@ -161,8 +171,6 @@ with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
                 pdb.set_trace()
             avg_loss += loss_value
             avg_acc += tr_acc * 100
-            # print('loss_valuet: %0.2f,  ar_acc: %0.2f' % (loss_value, tr_acc))
-        # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
         duration = time.time() - start_time
         print('epoch %d time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss/(total_batch), avg_acc/total_batch))
     y = np.reshape(train_labels, (train_labels.shape[0], 1))
