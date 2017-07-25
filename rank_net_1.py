@@ -8,6 +8,8 @@ import pdb
 import os
 from sklearn.metrics import accuracy_score
 
+os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+
 train_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/train_safety.csv'
 validate_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/validate_safety.csv'
 test_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/test_safety.csv'
@@ -20,7 +22,7 @@ def readImageList(input_imagelist):
     imageList_ = []
     with open(input_imagelist, 'r') as fi:
         while(True):
-            line = fi.readline().strip().split()  # every line is a image file name
+            line = fi.readline().strip().split()  # 每一行是一个文件名
             if not line:
                 break
             imageList_.append(line[0].rstrip('.jpg'))
@@ -69,27 +71,16 @@ def ss_net(x):
     return fc3
 
 
-def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
-    assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
+def fc_layer(bottom, n_weight, name):
+    assert len(bottom.get_shape()) == 2
     n_prev_weight = bottom.get_shape()[1]
-    initer = glorot_w(shape=[int(n_prev_weight), n_weight], name=name + 'W')
-    initer2 = glorot_b(shape=[n_weight], name=name + 'b')
-    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=initer2)
-    fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
+    init_range1 = np.sqrt(2.0 / (int(n_prev_weight) + n_weight))
+    initer = tf.random_uniform([int(n_prev_weight),n_weight],minval=-init_range1,maxval=init_range1,dtype=tf.float32)
+    W = tf.get_variable(name + 'W', dtype=tf.float32, initializer=initer)
+    b = tf.get_variable(name + 'b', dtype=tf.float32,
+                        initializer=tf.constant(0.01, shape=[n_weight], dtype=tf.float32))
+    fc = tf.nn.bias_add(tf.matmul(bottom, W), b)
     return fc
-
-
-def glorot_w(shape, name=None):
-    init_range = np.sqrt(2.0/(shape[0]+shape[1]))
-    initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
-    return tf.Variable(initial, name=name)
-
-
-def glorot_b(shape, name=None):
-    init_range = np.sqrt(2.0 / (shape[0] + 0))
-    initial = tf.random_uniform(shape, minval= -init_range, maxval=init_range, dtype=tf.float32)
-    return tf.Variable(initial, name=name)
 
 
 def log_loss_(label, difference_):
@@ -126,20 +117,20 @@ images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
 images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
 labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
 
-with tf.device('/gpu:2'):
-    with tf.variable_scope("siamese") as scope:
-        model1 = ss_net(images_L)
-        scope.reuse_variables()
-        model2 = ss_net(images_R)
+with tf.variable_scope("siamese") as scope:
+    model1 = ss_net(images_L)
+    scope.reuse_variables()
+    model2 = ss_net(images_R)
 
-    difference = tf.sigmoid(tf.subtract(model2, model1))
-    loss = log_loss_(labels, difference)
-    optimizer = tf.train.AdamOptimizer(0.01).minimize(loss)
+difference = tf.sigmoid(tf.subtract(model2, model1))
+loss = log_loss_(labels, difference)
+optimizer = tf.train.AdamOptimizer(0.01).minimize(loss)
 print('a------------------------------------******------------------------------------------a')
 
 # 启动会话-图
-# with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
-with tf.Session(config=tf.ConfigProto(log_device_placement=True)) as sess:
+config = tf.ConfigProto()
+config.gpu_options.allow_growth = True
+with tf.Session(config=config) as sess:
     tf.global_variables_initializer().run()
     # 循环训练整个样本30次
     for epoch in range(30):

@@ -8,6 +8,7 @@ import pdb
 import os
 from sklearn.metrics import accuracy_score
 from sklearn.model_selection import GridSearchCV
+os.environ["CUDA_VISIBLE_DEVICES"] = "0"
 
 train_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/train_safety.csv'
 validate_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/validate_safety.csv'
@@ -60,11 +61,11 @@ def read_data_create_pairs(imageList_, safty):
     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
 
 
-def ss_net(x,size):
+def ss_net(x, size_):
     weights = []
     fc1 = fc_layer(x, 4096, "fc1")
     ac1 = tf.nn.relu(fc1)
-    fc2 = fc_layer(ac1, size, "fc2")
+    fc2 = fc_layer(ac1, size_, "fc2")
     ac2 = tf.nn.relu(fc2)
     fc3 = fc_layer(ac2, 1, "fc3")
     return fc3
@@ -73,24 +74,15 @@ def ss_net(x,size):
 def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
     assert len(bottom.get_shape()) == 2     # 只有tensor有这个方法， 返回是一个tuple
     n_prev_weight = bottom.get_shape()[1]
-    initer = glorot_w(shape=[int(n_prev_weight), n_weight], name=name + 'W')
-    initer2 = glorot_b(shape=[n_weight], name=name + 'b')
-    W = tf.get_variable(name + 'W', dtype=tf.float32, shape=[n_prev_weight, n_weight], initializer=initer)
-    b = tf.get_variable(name + 'b', dtype=tf.float32, initializer=initer2)
+    shape_tmp = [n_prev_weight, n_weight]
+    print str(float(shape_tmp[0])) + ' , ' + str(int(shape_tmp[0]))
+    init_range1 = np.sqrt(2.0 / (shape_tmp[0] + shape_tmp[1]))
+    initer1 = tf.random_uniform(shape=shape_tmp, minval=-init_range1,maxval=init_range1,dtype=tf.float32)
+    W = tf.get_variable(name + 'W', dtype=tf.float32, initializer=initer1)
+    b = tf.get_variable(name + 'b', dtype=tf.float32,
+                        initializer=tf.constant(0.01, shape=[n_weight], dtype=tf.float32))
     fc = tf.nn.bias_add(tf.matmul(bottom, W), b)  # tf.nn.bias_add(value, bias, name = None) 将偏置项b加到values上
     return fc
-
-
-def glorot_w(shape, name=None):
-    init_range = np.sqrt(2.0/(shape[0]+shape[1]))
-    initial = tf.random_uniform(shape, minval=-init_range, maxval=init_range, dtype=tf.float32)
-    return tf.Variable(initial, name=name)
-
-
-def glorot_b(shape, name=None):
-    init_range = np.sqrt(2.0 / (shape[0] + 0))
-    initial = tf.random_uniform(shape, minval= -init_range, maxval=init_range, dtype=tf.float32)
-    return tf.Variable(initial, name=name)
 
 
 def log_loss_(label, difference_):
@@ -125,8 +117,8 @@ test_x, test_labels = read_data_create_pairs(imageList, test_safty)
 images_L = tf.placeholder(tf.float32, shape=([None, 4096]), name='L')
 images_R = tf.placeholder(tf.float32, shape=([None, 4096]), name='R')
 labels = tf.placeholder(tf.float32, shape=([None, 1]), name='label')
-learning_rate = tf.placeholder('float')
-size = tf.placeholder('int')
+learning_rate = tf.placeholder(tf.float32)
+size = tf.placeholder(tf.int32)
 
 batch_size = 256
 grid, t_p = [], []
@@ -138,22 +130,23 @@ for i in range(len(tuned_parameters['size'])):
         print('------------------------------------temp divided well----------------------------------------------')
 
 for k in range(len(t_p)):
-    with tf.device('/gpu:1'):
-        with tf.variable_scope("siamese") as scope:
-            model1 = ss_net(images_L, size)
-            scope.reuse_variables()
-            model2 = ss_net(images_R, size)
+    with tf.variable_scope("siamese") as scope:
+        model1 = ss_net(images_L, size)
+        scope.reuse_variables()
+        model2 = ss_net(images_R, size)
 
-        difference = tf.sigmoid(tf.subtract(model2, model1))
-        loss = log_loss_(labels, difference)
-        optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)
+    difference = tf.sigmoid(tf.subtract(model2, model1))
+    loss = log_loss_(labels, difference)
+    optimizer = tf.train.AdamOptimizer(learning_rate).minimize(loss)
     print('a---------------------------------------GGGGGGGGGGGGGG-----------------------------------------------a')
 
     # 启动会话-图
-    with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True
+    with tf.Session(config=config) as sess:
         tf.global_variables_initializer().run()
         # 循环训练整个样本30次
-        for epoch in range(20):
+        for epoch in range(30):
             avg_loss = 0.
             avg_acc = 0.
             total_batch = int(train_x.shape[0] / batch_size)
@@ -176,8 +169,7 @@ for k in range(len(t_p)):
                 avg_acc += tr_acc * 100
             # print('epoch %d loss %0.2f' %(epoch,avg_loss/total_batch))
             duration = time.time() - start_time
-            print('epoch %d time: %f loss: %0.5f acc: %0.2f' %
-                  (epoch, duration, avg_loss / total_batch, avg_acc / total_batch))
+            print('epoch %d time: %f loss: %0.5f acc: %0.2f' % (epoch, duration, avg_loss/total_batch, avg_acc/total_batch))
         y = np.reshape(train_labels, (train_labels.shape[0], 1))
         predict = difference.eval(
             feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1], size:t_p[k][0]})
