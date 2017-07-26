@@ -30,20 +30,51 @@ def readImageList(input_imagelist):
 
 
 # 序列号匹配对应的特征向量，并返回一个array数组(包含对应特征向量及标签)
+# def read_data_create_pairs(imageList_, safty):
+#     f = open(safty)
+#     reader = csv.reader(f)
+#     header = next(reader)
+#     f_f = open(f_vector_csv)
+#     reader_f = csv.reader(f_f)
+#     temp_val, temp_f, temp = [], [], []
+#     pairs = []
+#     labels = []
+#     x1, x2 = -1, -1
+#     for k in reader:
+#         temp_val.append(k)
+#     for k in reader_f:
+#         temp_f.append(k)
+#     for i in range(len(temp_val)):
+#         if temp_val[i][2] == 'left':
+#             flag = 1
+#         elif temp_val[i][2] == 'right':
+#             flag = -1
+#         else:
+#             continue
+#         for j in range(len(imageList_)):
+#             if temp_val[i][0] == imageList_[j]:
+#                 x1 = j
+#             if temp_val[i][1] == imageList_[j]:
+#                 x2 = j
+#                 if x1 != -1:
+#                     break
+#         temp = [temp_f[x1],temp_f[x2]]
+#         pairs.append(temp)
+#         labels.append(flag)
+#     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
+
+
 def read_data_create_pairs(imageList_, safty):
     f = open(safty)
     reader = csv.reader(f)
     header = next(reader)
-    f_f = open(f_vector_csv)
-    reader_f = csv.reader(f_f)
-    temp_val, temp_f, temp = [], [], []
+    data = np.genfromtxt(f_vector_csv, delimiter=',', dtype=float)
+    temp_val,  temp = [], []
     pairs = []
     labels = []
     x1, x2 = -1, -1
     for k in reader:
         temp_val.append(k)
-    for k in reader_f:
-        temp_f.append(k)
     for i in range(len(temp_val)):
         if temp_val[i][2] == 'left':
             flag = 1
@@ -58,11 +89,10 @@ def read_data_create_pairs(imageList_, safty):
                 x2 = j
                 if x1 != -1:
                     break
-        temp = [temp_f[x1],temp_f[x2]]
+        temp = [data[x1], data[x2]]
         pairs.append(temp)
         labels.append(flag)
     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
-
 
 def ss_net(x):
     weights = []
@@ -131,17 +161,17 @@ with tf.variable_scope("siamese") as scope:
 
 difference = tf.sigmoid(tf.subtract(model2, model1))
 loss = log_loss_(labels, difference)
-optimizer = tf.train.MomentumOptimizer(1e-2, 0.9).minimize(loss)
+optimizer = tf.train.MomentumOptimizer(1e-4, 0.9).minimize(loss)
 print('a------------------------------------******------------------------------------------a')
 # 启动会话-图
 # with tf.Session(config=tf.ConfigProto(allow_soft_placement=True, log_device_placement=True)) as sess:gpu_options=tf.GPUOptions(per_process_gpu_memory_fraction=0.7)
-gpu_options=tf.GPUOptions(per_process_gpu_memory_fraction=0.77)
+gpu_options=tf.GPUOptions(per_process_gpu_memory_fraction=1)
 config=tf.ConfigProto(gpu_options=gpu_options)
 with tf.Session(config=config) as sess:
     # 初始化所有变量
     tf.global_variables_initializer().run()
     # 循环训练整个样本30次
-    for epoch in range(20):
+    for epoch in range(30):
         avg_loss = 0.
         avg_acc = 0.
         total_batch = int(train_x.shape[0] / batch_size)
@@ -164,12 +194,20 @@ with tf.Session(config=config) as sess:
             # print('loss_valuet: %0.2f,  ar_acc: %0.2f' % (loss_value, tr_acc))
         duration = time.time() - start_time
         print('epoch %d  time: %f loss %0.5f acc %0.2f' % (epoch, duration, avg_loss / (total_batch), avg_acc / total_batch))
-    y = np.reshape(train_labels, (train_labels.shape[0], 1))
-    predict = difference.eval(feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})
-    tr_acc = compute_accuracy(predict, y)
-    print('Accuracy training set %0.2f' % (100 * tr_acc))
+    # y = np.reshape(train_labels, (train_labels.shape[0], 1))
+    # predict = difference.eval(feed_dict={images_L: train_x[:, 0], images_R: train_x[:, 1]})
+    # tr_acc = compute_accuracy(predict, y)
+    # print('Accuracy training set %0.2f' % (100 * tr_acc))
+        predict_va = difference.eval(feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1]})
+        y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
+        vl_acc = compute_accuracy(predict_va, y)
+        print('epoch %d Accuracy validate set %0.2f' % (epoch, 100 * vl_acc))
 
-    # Validate model
+        predict_te = difference.eval(feed_dict={images_L: test_x[:, 0], images_R: test_x[:, 1]})
+        y = np.reshape(test_labels, (test_labels.shape[0], 1))
+        te_acc = compute_accuracy(predict_te, y)
+        print('epoch %d Accuracy test set %0.2f' % (epoch, 100 * te_acc))
+        # Validate model
     predict = difference.eval(feed_dict={images_L: validate_x[:, 0], images_R: validate_x[:, 1]})
     y = np.reshape(validate_labels, (validate_labels.shape[0], 1))
     vl_acc = compute_accuracy(predict, y)

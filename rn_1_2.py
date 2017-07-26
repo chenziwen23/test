@@ -8,7 +8,7 @@ import pdb
 import os
 from sklearn.metrics import accuracy_score
 
-os.environ["CUDA_VISIBLE_DEVICES"] = "3"
+os.environ["CUDA_VISIBLE_DEVICES"] = "2"
 
 train_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/train_safety.csv'
 validate_safty = r'/storage/guoyangyang/ziwen/Ranking_network/votes_safety/validate_safety.csv'
@@ -55,7 +55,7 @@ def read_data_create_pairs(imageList_, safty):
                 x2 = j
                 if x1 != -1:
                     break
-        temp = [data[x1], data[x2]]
+        temp = [list(data[x1]), list(data[x2])]
         pairs.append(temp)
         labels.append(flag)
     return np.array(pairs), np.array(labels)  # 返回的两个值此时都是元组
@@ -83,7 +83,7 @@ def fc_layer(bottom, n_weight, name):   # 注意bottom是256×4096的矩阵
 def log_loss_(label, difference_):
     predicts = difference_
     labels_ = tf.div(tf.add(label, 1), 2)
-    loss_ = tf.losses.log_loss(labels = labels_, predictions = predicts)
+    loss_ = tf.losses.log_loss(labels=labels_, predictions=predicts)
     return loss_
 
 
@@ -121,7 +121,7 @@ with tf.variable_scope("siamese") as scope:
 
 difference = tf.sigmoid(tf.subtract(model2, model1))
 loss = log_loss_(labels, difference)
-optimizer = tf.train.AdamOptimizer(learning_rate=0.01,beta1=0.9,beta2=0.999, epsilon=1e-08).minimize(loss)
+optimizer = tf.train.AdamOptimizer(learning_rate=0.0000001, beta1=0.9, beta2=0.999, epsilon=1e-08).minimize(loss)
 print('a------------------------------------******------------------------------------------a')
 
 # 启动会话-图
