@@ -77,21 +77,12 @@ def main():
     gpu_memory_fraction = 0.96
     # Learning params
     learning_rate = 0.0001
-    num_epochs = 10
     batch_size = 4096
-
-    # Network params
-    dropout_rate = 0.5
-    num_classes = 1
-    train_layers = ['fc1000']
 
     # Read the file containing the pairs used for testing
     pairs_train, labels_train = read_pairs_path_label(image_directory, train_filename)
     pairs_validation, labels_validation = read_pairs_path_label(image_directory, validation_filename)
     with tf.Graph().as_default():
-        # Placeholder for the learning rate
-        learning_rate_placeholder = tf.placeholder(tf.float32, name='learning_rate')
-        batch_size_placeholder = tf.placeholder(tf.int32, name='batch_size')
         image_placeholder = tf.placeholder(tf.string, shape=(len(pairs_train), 2), name='image')  #
         labels_placeholder = tf.placeholder(tf.int64, shape=(None, 1), name='labels')          #
 
